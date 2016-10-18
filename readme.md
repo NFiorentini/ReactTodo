@@ -1,1 +1,1 @@
-React Timer! You dig?
+Boilerplate React App

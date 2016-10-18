@@ -1,14 +1,11 @@
 {
-  "name": "React_Boilerplate_3",
+  "name": "React_Todo",
   "version": "1.0.0",
-  "description": "A simple React Boilerplate",
+  "description": "Simple react app",
   "main": "index.js",
   "scripts": {
     "test": "karma start",
     "start": "node server.js"
-  },
-  "engines": {
-    "node": "6.5.0"
   },
   "author": "Nicholas Fiorentini",
   "license": "MIT",
@@ -27,8 +24,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
-    "eslint": "^3.2.2",
-    "eslint-plugin-react": "^6.0.0",
     "expect": "^1.14.0",
     "foundation-sites": "^6.2.0",
     "jquery": "^2.2.1",
@@ -39,7 +34,9 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "moment": "^2.12.0",
     "node-sass": "^3.4.2",
+    "node-uuid": "^1.4.7",
     "sass-loader": "^3.1.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",

@@ -1,5 +1,5 @@
-var path             = require('path');
-var webpack          = require('webpack');
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -22,13 +22,10 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
-
-    /*
-    modulesDirectories is an alternative to aliases.
-    */
     modulesDirectories: [
       'node_modules',
-      './app/components'
+      './app/components',
+      './app/api'
     ],
     alias: {
       applicationStyles: 'app/styles/app.scss'
