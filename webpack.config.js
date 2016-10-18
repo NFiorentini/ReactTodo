@@ -22,6 +22,14 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
+
+    /*
+    modulesDirectories is an alternative to aliases.
+    */
+    modulesDirectories: [
+      'node_modules',
+      './app/components'
+    ],
     alias: {
       applicationStyles: 'app/styles/app.scss'
     },
