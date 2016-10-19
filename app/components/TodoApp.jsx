@@ -9,6 +9,7 @@ const uuid                          = require('node-uuid');
 const TodoApp = React.createClass({
 
   getInitialState: function () {
+
     return {
       showCompleted: false,
       searchText: '',
@@ -21,10 +22,21 @@ const TodoApp = React.createClass({
   },
 
   handleAddTodo: function (text) {
+
     this.setState({
+
+      /*
+      Spread out the current todos array & push the
+      new todo item onto the end.
+      */
       todos: [
         ...this.state.todos,
         {
+
+          /*
+          uuid() returns a long, unique string that
+          is seeded using the timestamp.
+          */
           id: uuid(),
           text: text,
           completed: false,
@@ -36,11 +48,14 @@ const TodoApp = React.createClass({
   },
 
   handleToggle: function (id) {
+
     const updatedTodos = this.state.todos.map((todo) => {
 
       if (todo.id === id) {
         todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
+
+        todo.completedAt =
+            todo.completed ? moment().unix() : undefined;
       }
 
       return todo;
@@ -50,6 +65,7 @@ const TodoApp = React.createClass({
   },
 
   handleSearch: function (showCompleted, searchText) {
+
     this.setState({
       showCompleted: showCompleted,
       searchText: searchText.toLowerCase()
@@ -68,11 +84,14 @@ const TodoApp = React.createClass({
 
         <div className="row">
           <div className=
-          "column small-centered small-11 medium-6 large-5">
+          "column small-centered small-11 medium-6 large-5"
+          >
 
             <div className="container">
               <TodoSearch onSearch={this.handleSearch}/>
-              <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+
+              <TodoList todos={filteredTodos}
+                  onToggle={this.handleToggle}/>
 
               <AddTodo onAddTodo={this.handleAddTodo}/>
             </div>

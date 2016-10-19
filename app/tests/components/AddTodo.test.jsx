@@ -1,21 +1,24 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
-var expect = require('expect');
-var $ = require('jquery');
-
-var AddTodo = require('AddTodo');
+const AddTodo          = require('AddTodo');
+const expect           = require('expect');
+const React            = require('react');
+const ReactDOM         = require('react-dom');
+const TestUtils        = require('react-addons-test-utils');
+const $ = require('jquery');
 
 describe('AddTodo', () => {
+
   it('should exist', () => {
     expect(AddTodo).toExist();
   });
 
   it('should call onAddTodo prop with valid data', () => {
-    var todoText = 'Check mail';
-    var spy = expect.createSpy();
-    var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
-    var $el = $(ReactDOM.findDOMNode(addTodo));
+    const todoText = 'Check mail';
+    const spy = expect.createSpy();
+
+    const addTodo = TestUtils
+        .renderIntoDocument(<AddTodo onAddTodo={spy}/>);
+
+    const $el = $(ReactDOM.findDOMNode(addTodo));
 
     addTodo.refs.todoText.value = todoText;
     TestUtils.Simulate.submit($el.find('form')[0]);
@@ -23,11 +26,16 @@ describe('AddTodo', () => {
     expect(spy).toHaveBeenCalledWith(todoText);
   });
 
-  it('should not call onAddTodo prop when invalid input', () => {
-    var todoText = '';
-    var spy = expect.createSpy();
-    var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
-    var $el = $(ReactDOM.findDOMNode(addTodo));
+  it('should NOT call onAddTodo prop when invalid input',
+      () => {
+
+    const todoText = '';
+    const spy = expect.createSpy();
+
+    const addTodo = TestUtils
+        .renderIntoDocument(<AddTodo onAddTodo={spy}/>);
+
+    const $el = $(ReactDOM.findDOMNode(addTodo));
 
     addTodo.refs.todoText.value = todoText;
     TestUtils.Simulate.submit($el.find('form')[0]);

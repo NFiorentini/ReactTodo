@@ -1,6 +1,10 @@
-const React = require('react');
-const Todo = require('Todo');
+const React          = require('react');
+const Todo           = require('Todo');
 
+/*
+The TodoList component is responsible for rendering
+a Todo component every element in the todos array.
+*/
 const TodoList = React.createClass({
 
   render: function () {
@@ -29,7 +33,7 @@ const TodoList = React.createClass({
           pass down attributes as props to a React
           component without explicitly defining
           everything. In this case id & text are
-          passed.          
+          passed.
           */
           <Todo key={todo.id} {...todo}
               onToggle={this.props.onToggle}/>
