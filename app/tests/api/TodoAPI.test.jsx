@@ -72,15 +72,17 @@ describe('TodoAPI', () => {
 
     const todos = [{
       id: 1,
-      text: 'Some text here',
+      text: 'Win Heisman trophy',
       completed: true
     },{
       id: 2,
-      text: 'Other text here',
+      text: 'Pick up Nobel Prize from committee ' +
+          'receptionist',
+
       completed: false
     },{
       id: 3,
-      text: 'Some text here',
+      text: 'Win another Grammy!',
       completed: true
     }];
 
@@ -113,7 +115,7 @@ describe('TodoAPI', () => {
     it('should filter todos by searchText', () => {
 
       const filteredTodos = TodoAPI
-          .filterTodos(todos, true, 'some');
+          .filterTodos(todos, true, 'win');
 
       expect(filteredTodos.length).toBe(2);
     });

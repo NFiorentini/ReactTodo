@@ -6,7 +6,7 @@ const AddTodo = React.createClass({
     e.preventDefault();
     const todoText = this.refs.todoText.value;
 
-    if (todoText.length > 0) {
+    if(todoText.length > 0) {
       this.refs.todoText.value = '';
       this.props.onAddTodo(todoText);
     } else {

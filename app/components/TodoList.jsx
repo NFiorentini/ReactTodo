@@ -12,7 +12,7 @@ const TodoList = React.createClass({
 
     const renderTodos = () => {
 
-      if (todos.length === 0) {
+      if(todos.length === 0) {
         return (
           <p className="container__message">
             Nothing To Do

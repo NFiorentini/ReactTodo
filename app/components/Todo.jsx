@@ -14,7 +14,7 @@ const Todo = React.createClass({
       let message = 'Created ';
       let timestamp = createdAt;
 
-      if (completed) {
+      if(completed) {
         message = 'Completed ';
         timestamp = completedAt;
       }
@@ -22,7 +22,7 @@ const Todo = React.createClass({
       return message + moment.unix(timestamp)
           .format('MMM Do YYYY @ h:mm a');
     };
-    
+
     /*
     onClick() also could've been defined as its own
     function up above.

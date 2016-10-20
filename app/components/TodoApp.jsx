@@ -62,7 +62,7 @@ const TodoApp = React.createClass({
     */
     const updatedTodos = this.state.todos.map((todo) => {
 
-      if (todo.id === id) {
+      if(todo.id === id) {
         todo.completed = !todo.completed;
 
         todo.completedAt =
