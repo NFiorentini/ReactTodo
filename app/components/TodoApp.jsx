@@ -13,10 +13,18 @@ const TodoApp = React.createClass({
     return {
       showCompleted: false,
       searchText: '',
+
+      /*
+      When we start, fetch the todos.
+      */
       todos: TodoAPI.getTodos()
     };
   },
 
+  /*
+  When we make changes to the state, set
+  the todos.
+  */
   componentDidUpdate: function () {
     TodoAPI.setTodos(this.state.todos);
   },

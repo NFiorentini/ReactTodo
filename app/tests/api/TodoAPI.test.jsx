@@ -1,8 +1,13 @@
-const  expect          = require('expect');
-const  TodoAPI         = require('TodoAPI');
+const expect          = require('expect');
+const TodoAPI         = require('TodoAPI');
 
 describe('TodoAPI', () => {
 
+  /*
+  beforeEach() & afterEach() are Mocha methods.
+  beforeEach is called before every test. Here, it
+  cleans out the local storage value.
+  */
   beforeEach(() => {
     localStorage.removeItem('todos');
   });
@@ -14,21 +19,24 @@ describe('TodoAPI', () => {
   describe('setTodos', () => {
 
     it('should set valid todos array', () => {
+
       const  todos = [{
         id: 23,
         test: 'test all files',
         completed: false
       }];
+
       TodoAPI.setTodos(todos);
 
-      const  actualTodos = JSON
+      const actualTodos = JSON
           .parse(localStorage.getItem('todos'));
 
       expect(actualTodos).toEqual(todos);
     });
 
     it('should not set invalid todos array', () => {
-      const  badTodos = {a: 'b'};
+
+      const badTodos = {a: 'b'};
       TodoAPI.setTodos(badTodos);
 
       expect(localStorage.getItem('todos')).toBe(null);
@@ -40,28 +48,29 @@ describe('TodoAPI', () => {
     it(('should return empty array for bad ' +
         'localstorage data'), () => {
 
-      const  actualTodos = TodoAPI.getTodos();
+      const actualTodos = TodoAPI.getTodos();
       expect(actualTodos).toEqual([]);
     });
 
     it(('should return todo if valid array '+
         'in localstorage'), () => {
 
-      const  todos = [{
+      const todos = [{
         id: 23,
         test: 'test all files',
         completed: false
       }];
 
       localStorage.setItem('todos', JSON.stringify(todos));
-      const  actualTodos = TodoAPI.getTodos();
+      const actualTodos = TodoAPI.getTodos();
 
       expect(actualTodos).toEqual(todos);
     });
   });
 
   describe('filterTodos', () => {
-    const  todos = [{
+
+    const todos = [{
       id: 1,
       text: 'Some text here',
       completed: true
@@ -78,7 +87,7 @@ describe('TodoAPI', () => {
     it(('should return all items if showCompleted ' +
         'is true'), () => {
 
-      const  filteredTodos = TodoAPI
+      const filteredTodos = TodoAPI
           .filterTodos(todos, true, '');
 
       expect(filteredTodos.length).toBe(3);
@@ -87,7 +96,7 @@ describe('TodoAPI', () => {
     it(('should return non-completed todos when ' +
         'showCompleted is false'), () => {
 
-      const  filteredTodos = TodoAPI
+      const filteredTodos = TodoAPI
           .filterTodos(todos, false, '');
 
       expect(filteredTodos.length).toBe(1);
@@ -95,7 +104,7 @@ describe('TodoAPI', () => {
 
     it('should sort by completed status', () => {
 
-      const  filteredTodos = TodoAPI
+      const filteredTodos = TodoAPI
           .filterTodos(todos, true, '');
 
       expect(filteredTodos[0].completed).toBe(false);
@@ -103,7 +112,7 @@ describe('TodoAPI', () => {
 
     it('should filter todos by searchText', () => {
 
-      const  filteredTodos = TodoAPI
+      const filteredTodos = TodoAPI
           .filterTodos(todos, true, 'some');
 
       expect(filteredTodos.length).toBe(2);
@@ -112,9 +121,9 @@ describe('TodoAPI', () => {
     it('should return all todos if searchText is empty',
         () => {
 
-      const  filteredTodos = TodoAPI
+      const filteredTodos = TodoAPI
           .filterTodos(todos, true, '');
-          
+
       expect(filteredTodos.length).toBe(3);
     });
   });
