@@ -49,6 +49,9 @@ const TodoApp = React.createClass({
 
   handleToggle: function (id) {
 
+    /*
+    Only update the items where the todo id matches.
+    */
     const updatedTodos = this.state.todos.map((todo) => {
 
       if (todo.id === id) {

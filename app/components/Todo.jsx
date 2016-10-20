@@ -1,5 +1,5 @@
-const moment = require('moment');
-const React = require('react');
+const moment          = require('moment');
+const React           = require('react');
 
 const Todo = React.createClass({
 
@@ -22,10 +22,15 @@ const Todo = React.createClass({
       return message + moment.unix(timestamp)
           .format('MMM Do YYYY @ h:mm a');
     };
-
+    
+    /*
+    onClick() also could've been defined as its own
+    function up above.
+    */
     return (
-      <div className={todoClassName} onClick={() => {
-        this.props.onToggle(id);
+      <div className={todoClassName}
+          onClick={() => {
+              this.props.onToggle(id);
       }}>
 
         <div>
