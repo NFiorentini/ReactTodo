@@ -1,5 +1,6 @@
 const {connect}      = require('react-redux');
 const React          = require('react');
+const TodoAPI        = require('TodoAPI');
 
 import Todo from 'Todo';
 
@@ -10,7 +11,7 @@ a Todo component every element in the todos array.
 export const TodoList = React.createClass({
 
   render: function () {
-    const {todos} = this.props;
+    const {todos, showCompleted, searchText} = this.props;
 
     const renderTodos = () => {
 
@@ -27,7 +28,9 @@ export const TodoList = React.createClass({
       for every element in the array. Whatever is returned
       replaces that element in the array.
       */
-      return todos.map((todo) => {
+      return TodoAPI
+          .filterTodos(todos, showCompleted, searchText)
+          .map((todo) => {
         return (
 
           /*
@@ -52,8 +55,6 @@ export const TodoList = React.createClass({
 
 export default connect(
   (state) => {
-    return {
-      todos: state.todos
-    };
+    return state;
   }
 )(TodoList);
