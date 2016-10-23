@@ -62,7 +62,7 @@ describe('Reducers', () => {
         id: '123'
       };
 
-      var res = reducers
+      const res = reducers
           .todosReducer(df(todos), df(action));
 
       expect(res[0].completed).toEqual(false);
