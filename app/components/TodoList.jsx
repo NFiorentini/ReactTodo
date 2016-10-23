@@ -1,11 +1,13 @@
+const {connect}      = require('react-redux');
 const React          = require('react');
-const Todo           = require('Todo');
+
+import Todo from 'Todo';
 
 /*
 The TodoList component is responsible for rendering
 a Todo component every element in the todos array.
 */
-const TodoList = React.createClass({
+export const TodoList = React.createClass({
 
   render: function () {
     const {todos} = this.props;
@@ -35,8 +37,7 @@ const TodoList = React.createClass({
           everything. In this case id & text are
           passed.
           */
-          <Todo key={todo.id} {...todo}
-              onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo}/>
         );
       });
     };
@@ -49,4 +50,10 @@ const TodoList = React.createClass({
   }
 });
 
-module.exports = TodoList;
+export default connect(
+  (state) => {
+    return {
+      todos: state.todos
+    };
+  }
+)(TodoList);

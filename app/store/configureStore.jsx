@@ -5,7 +5,7 @@ const {
   todosReducer
    }                                  = require('reducers');
 
-export const configure = () => {
+export const configure = (initialState = {}) => {
 
   const reducer = redux.combineReducers({
     searchText: searchTextReducer,
@@ -13,9 +13,9 @@ export const configure = () => {
     todos: todosReducer
   });
 
-  const store = redux.createStore(reducer, redux.compose(
-    window.devToolsExtension ?
-        window.devToolsExtension() : f => f
+  const store = redux.createStore(reducer, initialState,
+      redux.compose(window.devToolsExtension ?
+          window.devToolsExtension() : f => f
   ));
 
   return store;

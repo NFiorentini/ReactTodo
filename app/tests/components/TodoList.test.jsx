@@ -1,10 +1,13 @@
 const expect           = require('expect');
+const {Provider}       = require('react-redux');
 const React            = require('react');
 const ReactDOM         = require('react-dom');
 const TestUtils        = require('react-addons-test-utils');
-const Todo             = require('Todo');
-const TodoList         = require('TodoList');
 const $                = require('jquery');
+
+import {configure} from 'configureStore';
+import ConnectedTodoList, {TodoList} from 'TodoList';
+import ConnectedTodo, {Todo} from 'Todo';
 
 describe('TodoList', () => {
 
@@ -24,17 +27,35 @@ describe('TodoList', () => {
     */
     const todos = [{
       id: 1,
-      text: 'Do something'
+      text: 'Do something',
+      completed: false,
+      completedAt: undefined,
+      createdAt: 500
     }, {
       id: 2,
-      text: 'Check mail'
+      text: 'Check mail',
+      completed: false,
+      completedAt: undefined,
+      createdAt: 500
     }];
 
+    const store = configure({
+      todos
+    });
+
+    const provider = TestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <ConnectedTodoList/>
+      </Provider>
+    );
+
     const todoList = TestUtils
-        .renderIntoDocument(<TodoList todos={todos}/>);
+        .scryRenderedComponentsWithType(
+            provider, ConnectedTodoList)[0];
 
     const todosComponents = TestUtils
-        .scryRenderedComponentsWithType(todoList, Todo);
+        .scryRenderedComponentsWithType(
+            todoList, ConnectedTodo);
 
     /*
     Make the assertion.

@@ -6,7 +6,7 @@ export const searchTextReducer = (state = '', action) => {
 
     case 'SET_SEARCH_TEXT':
       return action.searchText;
-      
+
     default:
       return state;
   };
@@ -53,6 +53,8 @@ export const todosReducer = (state = [], action) => {
             completedAt: nextCompleted ?
                 moment().unix() : undefined
           };
+        } else {
+          return todo;
         }
       });
 

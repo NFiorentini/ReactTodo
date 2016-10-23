@@ -1,4 +1,5 @@
 const actions       = require('actions');
+const {Provider}    = require('react-redux');
 const React         = require('react');
 const ReactDOM      = require('react-dom');
 const store         = require('configureStore').configure();
@@ -26,6 +27,8 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-  <TodoApp/>,
+  <Provider store={store}>
+    <TodoApp/>
+  </Provider>,
   document.getElementById('app')
 );
