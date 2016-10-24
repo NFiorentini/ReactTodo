@@ -4,6 +4,7 @@ const React         = require('react');
 const ReactDOM      = require('react-dom');
 const store         = require('configureStore').configure();
 const TodoApp       = require('TodoApp');
+const TodoAPI       = require('TodoAPI');
 
 const {
   Route,
@@ -13,9 +14,15 @@ const {
  }                  = require('react-router');
 
  store.subscribe(() => {
-   console.log('New state', store.getState());
+   const state = store.getState();
+   console.log('New state', state);
+
+   TodoAPI.setTodos(state.todos);
  });
- 
+
+const initialTodos = TodoAPI.getTodos();
+store.dispatch(actions.addTodos(initialTodos));
+
 // Load foundation
 $(document).foundation();
 
