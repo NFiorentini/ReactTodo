@@ -15,7 +15,10 @@ export const TodoList = React.createClass({
 
     const renderTodos = () => {
 
-      if(todos.length === 0) {
+      const filteredTodos = TodoAPI
+          .filterTodos(todos, showCompleted, searchText);
+
+      if(filteredTodos.length === 0) {
         return (
           <p className="container__message">
             Nothing To Do
@@ -28,9 +31,7 @@ export const TodoList = React.createClass({
       for every element in the array. Whatever is returned
       replaces that element in the array.
       */
-      return TodoAPI
-          .filterTodos(todos, showCompleted, searchText)
-          .map((todo) => {
+      return filteredTodos.map((todo) => {
         return (
 
           /*
