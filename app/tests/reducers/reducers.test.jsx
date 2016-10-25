@@ -2,6 +2,7 @@ const df                    = require('deep-freeze-strict');
 const expect                = require('expect');
 const reducers              = require('reducers');
 
+
 describe('Reducers', () => {
 
   describe('searchTextReducer', () => {
@@ -55,7 +56,7 @@ describe('Reducers', () => {
     });
 
 
-    it('should toggle todo', () => {
+    it('should update todo', () => {
 
       const todos = [{
         id: '123',
@@ -65,18 +66,28 @@ describe('Reducers', () => {
         completedAt: 125
       }];
 
+      const updates = {
+        completed: false,
+        completedAt: null
+      };
+
       const action = {
-        type: 'TOGGLE_TODO',
-        id: '123'
+        type: 'UPDATE_TODO',
+        id: todos[0].id,
+        updates
       };
 
       const res = reducers
           .todosReducer(df(todos), df(action));
 
-      expect(res[0].completed).toEqual(false);
-      expect(res[0].completedAt).toEqual(undefined);
+      expect(res[0].completed).toEqual(updates.completed);
+
+      expect(res[0].completedAt)
+          .toEqual(updates.completedAt);
+
+      expect(res[0].text).toEqual(todos[0].text);
     });
-    
+
 
     it('should add existing todos', () => {
 

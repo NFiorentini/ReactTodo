@@ -24,7 +24,7 @@ export const AddTodo = React.createClass({
       this.refs.todoText.focus();
     }
   },
-
+  
   render: function () {
     return (
       <div className="container__footer">
