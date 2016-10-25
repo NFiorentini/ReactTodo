@@ -23,10 +23,10 @@ const {
 const initialTodos = TodoAPI.getTodos();
 store.dispatch(actions.addTodos(initialTodos));
 
-// Load foundation
+// Load Foundation
 $(document).foundation();
 
-// App css
+// App CSS
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(

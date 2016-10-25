@@ -5,21 +5,21 @@ const ReactDOM         = require('react-dom');
 const TestUtils        = require('react-addons-test-utils');
 const $ = require('jquery');
 
+import * as actions from 'actions';
+
 describe('AddTodo', () => {
 
   it('should exist', () => {
     expect(AddTodo).toExist();
   });
 
+
   it('should dispatch ADD_TODO when valid todo text',
       () => {
 
     const todoText = 'Check mail';
 
-    const action = {
-      type: 'ADD_TODO',
-      text: todoText
-    };
+    const action = actions.startAddTodo(todoText);
 
     const spy = expect.createSpy();
 
@@ -33,6 +33,7 @@ describe('AddTodo', () => {
 
     expect(spy).toHaveBeenCalledWith(action);
   });
+  
 
   it('should NOT dispatch ADD_TODO when invalid todo text',
       () => {
