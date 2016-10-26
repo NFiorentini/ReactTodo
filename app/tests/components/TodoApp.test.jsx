@@ -4,9 +4,9 @@ const {Provider}       = require('react-redux');
 const React            = require('react');
 const ReactDOM         = require('react-dom');
 const TestUtils        = require('react-addons-test-utils');
-const TodoApp          = require('TodoApp');
 const $                = require('jquery');
 
+import {TodoApp} from 'TodoApp';
 import TodoList from 'TodoList';
 
 describe('TodoApp', () => {
