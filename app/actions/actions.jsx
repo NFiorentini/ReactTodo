@@ -5,6 +5,7 @@ import moment from 'moment';
 
 
 export const setSearchText = (searchText) => {
+
   return {
     type: 'SET_SEARCH_TEXT',
     searchText
@@ -13,6 +14,7 @@ export const setSearchText = (searchText) => {
 
 
 export const toggleShowCompleted = () => {
+
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
   };
@@ -20,6 +22,7 @@ export const toggleShowCompleted = () => {
 
 
 export const addTodo = (todo) => {
+
   return {
     type: 'ADD_TODO',
     todo
@@ -28,6 +31,7 @@ export const addTodo = (todo) => {
 
 
 export const startAddTodo = (text) => {
+
   return (dispatch, getState) => {
 
     const todo = {
@@ -37,7 +41,10 @@ export const startAddTodo = (text) => {
       completedAt: null
     };
 
-    const todoRef = firebaseRef.child('todos').push(todo);
+    const uid = getState().auth.uid;
+
+    const todoRef = firebaseRef
+        .child(`users/${uid}/todos`).push(todo);
 
     return todoRef.then(() => {
       dispatch(addTodo({
@@ -50,6 +57,7 @@ export const startAddTodo = (text) => {
 
 
 export const addTodos = (todos) => {
+
   return {
     type: 'ADD_TODOS',
     todos
@@ -60,7 +68,11 @@ export const addTodos = (todos) => {
 export const startAddTodos = () => {
 
   return (dispatch, getState) => {
-    const todosRef = firebaseRef.child('todos');
+
+    const uid = getState().auth.uid;
+
+    const todosRef = firebaseRef
+        .child(`users/${uid}/todos`);
 
     return todosRef.once('value').then((snapshot) => {
       const todos = snapshot.val() || {};
@@ -80,6 +92,7 @@ export const startAddTodos = () => {
 
 
 export const updateTodo = (id, updates) => {
+
   return {
     type: 'UPDATE_TODO',
     id,
@@ -92,7 +105,10 @@ export const startToggleTodo = (id, completed) => {
 
   return (dispatch, getState) => {
 
-    const todoRef = firebaseRef.child(`todos/${id}`);
+    const uid = getState().auth.uid;
+
+    const todoRef = firebaseRef
+        .child(`users/${uid}/todos/${id}`);
 
     const updates= {
       completed,
